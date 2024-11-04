@@ -1,0 +1,12 @@
+about
+paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts
+creating-offspring-function---create_offspring_loop.cpp
+general-simulation-wrapper-code
+generating-environmental-pools.
+generating-new-microbiomes-within-a-host-generation
+generating-new-hosts
+clarify-here-how-to-save-different-elements-of-the-data
+unused-functions-and-capacities
+running-a-simulation
+paper-1---effective-vertical-inheritance
+running-an-effective-vi-simulation
