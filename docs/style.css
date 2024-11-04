@@ -1,0 +1,29 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+pre.r + pre.r {
+    margin-top: -1em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+  }
+.badCode {
+background-color: #c9fffb;
+color:black;
+}
+
+pre.numberSource code > span > a:first-child::before {
+  left: -0.3em;
+}

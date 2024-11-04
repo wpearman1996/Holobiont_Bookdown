@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Paper 1 - Effective vertical inheritance | Holobiont Modelling Framework</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Paper 1 - Effective vertical inheritance | Holobiont Modelling Framework" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Paper 1 - Effective vertical inheritance | Holobiont Modelling Framework" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="William S. Pearman, Allen G. Rodrigo, Anna W. Santure" />
+
+
+<meta name="date" content="2024-11-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><i class="fa fa-check"></i><b>2</b> Paper 1 - Joint consideration of selection and microbial generation count provides unique insights into evolutionary and ecological dynamics of holobionts</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html#creating-offspring-function---create_offspring_loop.cpp"><i class="fa fa-check"></i><b>2.1</b> Creating offspring function - <code>create_offspring_loop.cpp</code></a></li>
+<li class="chapter" data-level="2.2" data-path="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html#general-simulation-wrapper-code"><i class="fa fa-check"></i><b>2.2</b> General simulation wrapper code</a></li>
+<li class="chapter" data-level="2.3" data-path="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html#generating-environmental-pools."><i class="fa fa-check"></i><b>2.3</b> Generating environmental pools.</a></li>
+<li class="chapter" data-level="2.4" data-path="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html#generating-new-microbiomes-within-a-host-generation"><i class="fa fa-check"></i><b>2.4</b> Generating new microbiomes within a host generation</a></li>
+<li class="chapter" data-level="2.5" data-path="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html#generating-new-hosts"><i class="fa fa-check"></i><b>2.5</b> Generating new hosts</a></li>
+<li class="chapter" data-level="2.6" data-path="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html#unused-functions-and-capacities"><i class="fa fa-check"></i><b>2.6</b> Unused functions and capacities</a></li>
+<li class="chapter" data-level="2.7" data-path="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html"><a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html#running-a-simulation"><i class="fa fa-check"></i><b>2.7</b> Running a simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="paper-1---effective-vertical-inheritance.html"><a href="paper-1---effective-vertical-inheritance.html"><i class="fa fa-check"></i><b>3</b> Paper 1 - Effective vertical inheritance</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="paper-1---effective-vertical-inheritance.html"><a href="paper-1---effective-vertical-inheritance.html#running-an-effective-vi-simulation"><i class="fa fa-check"></i><b>3.1</b> Running an effective VI simulation</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Holobiont Modelling Framework</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="paper-1---effective-vertical-inheritance" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Paper 1 - Effective vertical inheritance<a href="paper-1---effective-vertical-inheritance.html#paper-1---effective-vertical-inheritance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<style type="text/css">
+  pre.r + pre.r {
+    margin-top: -1em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+  }
+.badCode {
+background-color: #c9fffb;
+color:black;
+}
+
+</style>
+<p>As we discuss in our paper, we include a comparison of vertical inheritance levels. We term ‘effective’ vertical inheritance as the proportion of parental microbes which are inherited at the point at which a host reproduces. For example, if a host inherits 99% of its microbes from its parents - but then lives for 100 microbial generations, the effective vertical inheritance will be lower than for 50 microbial generations due to acquistion of microbes from the environment, and the loss of parental microbes.</p>
+<p>We address this by running some bespoke simulations where at the 500th host generation, we label parental microbes and track their abundance over the course of a host generation. We do this for each environmental condition. This works in ‘janky’ way initializing the simulation with 400 ‘species’ slots, of which only 200 are occupied. At generation 498 we copy the parental microbes into the additional 200 slots which are called “VI_Spec_X” etc, and then we track the abundance of these over the course of the simulation in the subsequent generation.</p>
+<p>To properly test this - we first calculate the effective vertical inheritance, and then run our simulations as normal except we set microbial generation counts to 1, and we substitute the vertical inheritance values for the effective vertical inheritance values obtained for a generation count of interest. For example, in the following simulation we are interested in comparing the fitnesses of hosts with 50 microbial generations - while account for effective vertical inheritance. To address this, we will run a effective vertical inheritance simulation with 50 generations. We then determine what the effective vertical inheritance is, and then use that value as the effective vertical inheritance in a normal simulation where microbial generation count is 1. This allows to see if the benefits to host from microbial generation counts is the result of optimized vertical inheritance (in which case, fitnesses should be equivalent in both simulations) - or whether generation count itself is beneficial.</p>
+<p>Most of the code is relatively unchanged from normal. The key difference is the use of a modified <code>create_offspring_loop.cpp</code> function.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb8-1"><a href="paper-1---effective-vertical-inheritance.html#cb8-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-2"><a href="paper-1---effective-vertical-inheritance.html#cb8-2"></a></span>
+<span id="cb8-3"><a href="paper-1---effective-vertical-inheritance.html#cb8-3"></a><span class="fu">library</span>(readr)</span>
+<span id="cb8-4"><a href="paper-1---effective-vertical-inheritance.html#cb8-4"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb8-5"><a href="paper-1---effective-vertical-inheritance.html#cb8-5"></a><span class="fu">library</span>(Rcpp)</span>
+<span id="cb8-6"><a href="paper-1---effective-vertical-inheritance.html#cb8-6"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb8-7"><a href="paper-1---effective-vertical-inheritance.html#cb8-7"></a><span class="fu">library</span>(parallel)</span>
+<span id="cb8-8"><a href="paper-1---effective-vertical-inheritance.html#cb8-8"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-9"><a href="paper-1---effective-vertical-inheritance.html#cb8-9"></a>num_unique_values <span class="ot">&lt;-</span> <span class="cf">function</span>(vec) {</span>
+<span id="cb8-10"><a href="paper-1---effective-vertical-inheritance.html#cb8-10"></a>  <span class="fu">length</span>(<span class="fu">unique</span>(vec))</span>
+<span id="cb8-11"><a href="paper-1---effective-vertical-inheritance.html#cb8-11"></a>}</span>
+<span id="cb8-12"><a href="paper-1---effective-vertical-inheritance.html#cb8-12"></a></span>
+<span id="cb8-13"><a href="paper-1---effective-vertical-inheritance.html#cb8-13"></a><span class="co"># Function to calculate average distance between values</span></span>
+<span id="cb8-14"><a href="paper-1---effective-vertical-inheritance.html#cb8-14"></a>average_distance <span class="ot">&lt;-</span> <span class="cf">function</span>(vec) {</span>
+<span id="cb8-15"><a href="paper-1---effective-vertical-inheritance.html#cb8-15"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(vec)</span>
+<span id="cb8-16"><a href="paper-1---effective-vertical-inheritance.html#cb8-16"></a>  total_distance <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-17"><a href="paper-1---effective-vertical-inheritance.html#cb8-17"></a>  total_pairs <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-18"><a href="paper-1---effective-vertical-inheritance.html#cb8-18"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb8-19"><a href="paper-1---effective-vertical-inheritance.html#cb8-19"></a>    <span class="cf">for</span> (j <span class="cf">in</span> (i <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>n) {</span>
+<span id="cb8-20"><a href="paper-1---effective-vertical-inheritance.html#cb8-20"></a>      total_distance <span class="ot">&lt;-</span> total_distance <span class="sc">+</span> <span class="fu">abs</span>(vec[i] <span class="sc">-</span> vec[j])</span>
+<span id="cb8-21"><a href="paper-1---effective-vertical-inheritance.html#cb8-21"></a>      total_pairs <span class="ot">&lt;-</span> total_pairs <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb8-22"><a href="paper-1---effective-vertical-inheritance.html#cb8-22"></a>    }</span>
+<span id="cb8-23"><a href="paper-1---effective-vertical-inheritance.html#cb8-23"></a>  }</span>
+<span id="cb8-24"><a href="paper-1---effective-vertical-inheritance.html#cb8-24"></a>  total_distance <span class="sc">/</span> total_pairs</span>
+<span id="cb8-25"><a href="paper-1---effective-vertical-inheritance.html#cb8-25"></a>}</span>
+<span id="cb8-26"><a href="paper-1---effective-vertical-inheritance.html#cb8-26"></a>extract_pref_optima<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
+<span id="cb8-27"><a href="paper-1---effective-vertical-inheritance.html#cb8-27"></a>  <span class="fu">do.call</span>(<span class="st">&quot;rbind&quot;</span>,<span class="fu">lapply</span>(x[[<span class="dv">1</span>]]<span class="sc">$</span>GenData,<span class="cf">function</span>(y){(y<span class="sc">$</span>HostPrefOptima)}))</span>
+<span id="cb8-28"><a href="paper-1---effective-vertical-inheritance.html#cb8-28"></a>}</span>
+<span id="cb8-29"><a href="paper-1---effective-vertical-inheritance.html#cb8-29"></a>extract_fitnesses<span class="ot">&lt;-</span><span class="cf">function</span>(data,rel_log_gen){</span>
+<span id="cb8-30"><a href="paper-1---effective-vertical-inheritance.html#cb8-30"></a>  gendata<span class="ot">=</span>data<span class="sc">$</span>GenData</span>
+<span id="cb8-31"><a href="paper-1---effective-vertical-inheritance.html#cb8-31"></a>  data2use<span class="ot">=</span><span class="fu">lapply</span>(gendata,<span class="cf">function</span>(q){</span>
+<span id="cb8-32"><a href="paper-1---effective-vertical-inheritance.html#cb8-32"></a>    env_microbe_fitness_changes<span class="ot">&lt;-</span><span class="fu">mean</span>((q<span class="sc">$</span>env_fits))<span class="co">#/x[[1]]$GenData[[500]]$env_fits))</span></span>
+<span id="cb8-33"><a href="paper-1---effective-vertical-inheritance.html#cb8-33"></a>    host_microbe_fitness_changes<span class="ot">&lt;-</span><span class="fu">mean</span>((q<span class="sc">$</span>MicrobeFitness))<span class="co">#/x[[1]]$GenData[[500]]$MicrobeFitness))</span></span>
+<span id="cb8-34"><a href="paper-1---effective-vertical-inheritance.html#cb8-34"></a>    host_fitness_changes<span class="ot">&lt;-</span><span class="fu">mean</span>((q<span class="sc">$</span>HostFitness))<span class="co">#/x[[1]]$GenData[[500]]$HostFitness))</span></span>
+<span id="cb8-35"><a href="paper-1---effective-vertical-inheritance.html#cb8-35"></a>    gen_of_int_fitness_host<span class="ot">&lt;-</span><span class="fu">mean</span>(gendata[[rel_log_gen]]<span class="sc">$</span>HostFitness)</span>
+<span id="cb8-36"><a href="paper-1---effective-vertical-inheritance.html#cb8-36"></a>    gen_of_int_fitness_microbe<span class="ot">&lt;-</span><span class="fu">mean</span>(gendata[[rel_log_gen]]<span class="sc">$</span>MicrobeFitness)</span>
+<span id="cb8-37"><a href="paper-1---effective-vertical-inheritance.html#cb8-37"></a>    host_microbe_coeff<span class="ot">=</span><span class="fu">lm</span>(q<span class="sc">$</span>MicrobeFitness<span class="sc">~</span>q<span class="sc">$</span>HostFitness)</span>
+<span id="cb8-38"><a href="paper-1---effective-vertical-inheritance.html#cb8-38"></a>    host_microbe_coeff<span class="ot">&lt;-</span><span class="fu">summary</span>(host_microbe_coeff)<span class="sc">$</span>coefficients</span>
+<span id="cb8-39"><a href="paper-1---effective-vertical-inheritance.html#cb8-39"></a>    host_microbe_coeff<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(host_microbe_coeff)<span class="sc">$</span>Estimate[<span class="dv">2</span>]</span>
+<span id="cb8-40"><a href="paper-1---effective-vertical-inheritance.html#cb8-40"></a>    host_diversity<span class="ot">&lt;-</span><span class="fu">mean</span>(q<span class="sc">$</span>Diversity)</span>
+<span id="cb8-41"><a href="paper-1---effective-vertical-inheritance.html#cb8-41"></a>    <span class="fu">data.frame</span>(<span class="at">EnvMicrobeFitness=</span>env_microbe_fitness_changes,</span>
+<span id="cb8-42"><a href="paper-1---effective-vertical-inheritance.html#cb8-42"></a>               <span class="at">HostMicrobeFitness=</span>host_microbe_fitness_changes,</span>
+<span id="cb8-43"><a href="paper-1---effective-vertical-inheritance.html#cb8-43"></a>               <span class="at">HostFitness=</span>host_fitness_changes,</span>
+<span id="cb8-44"><a href="paper-1---effective-vertical-inheritance.html#cb8-44"></a>               <span class="at">diversity=</span>host_diversity,</span>
+<span id="cb8-45"><a href="paper-1---effective-vertical-inheritance.html#cb8-45"></a>               <span class="at">gen_of_int_fitness_microbe=</span>gen_of_int_fitness_microbe,</span>
+<span id="cb8-46"><a href="paper-1---effective-vertical-inheritance.html#cb8-46"></a>               <span class="at">gen_of_int_fitness_host=</span>gen_of_int_fitness_host,</span>
+<span id="cb8-47"><a href="paper-1---effective-vertical-inheritance.html#cb8-47"></a>               <span class="at">host_microbe_coeff=</span>host_microbe_coeff)</span>
+<span id="cb8-48"><a href="paper-1---effective-vertical-inheritance.html#cb8-48"></a>  }</span>
+<span id="cb8-49"><a href="paper-1---effective-vertical-inheritance.html#cb8-49"></a>  )</span>
+<span id="cb8-50"><a href="paper-1---effective-vertical-inheritance.html#cb8-50"></a>  <span class="fu">do.call</span>(<span class="st">&quot;rbind&quot;</span>,data2use)</span>
+<span id="cb8-51"><a href="paper-1---effective-vertical-inheritance.html#cb8-51"></a>}</span>
+<span id="cb8-52"><a href="paper-1---effective-vertical-inheritance.html#cb8-52"></a></span>
+<span id="cb8-53"><a href="paper-1---effective-vertical-inheritance.html#cb8-53"></a></span>
+<span id="cb8-54"><a href="paper-1---effective-vertical-inheritance.html#cb8-54"></a></span>
+<span id="cb8-55"><a href="paper-1---effective-vertical-inheritance.html#cb8-55"></a></span>
+<span id="cb8-56"><a href="paper-1---effective-vertical-inheritance.html#cb8-56"></a>calc_rich<span class="ot">&lt;-</span><span class="cf">function</span>(population){</span>
+<span id="cb8-57"><a href="paper-1---effective-vertical-inheritance.html#cb8-57"></a>  population[population<span class="sc">&gt;</span><span class="dv">0</span>]<span class="ot">&lt;-</span>T</span>
+<span id="cb8-58"><a href="paper-1---effective-vertical-inheritance.html#cb8-58"></a>  <span class="fu">colSums</span>(population)</span>
+<span id="cb8-59"><a href="paper-1---effective-vertical-inheritance.html#cb8-59"></a>}</span>
+<span id="cb8-60"><a href="paper-1---effective-vertical-inheritance.html#cb8-60"></a>fast_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb8-61"><a href="paper-1---effective-vertical-inheritance.html#cb8-61"></a>  x<span class="ot">&lt;-</span>x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span>
+<span id="cb8-62"><a href="paper-1---effective-vertical-inheritance.html#cb8-62"></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb8-63"><a href="paper-1---effective-vertical-inheritance.html#cb8-63"></a>}</span>
+<span id="cb8-64"><a href="paper-1---effective-vertical-inheritance.html#cb8-64"></a></span>
+<span id="cb8-65"><a href="paper-1---effective-vertical-inheritance.html#cb8-65"></a>calc_div<span class="ot">&lt;-</span><span class="cf">function</span>(population){</span>
+<span id="cb8-66"><a href="paper-1---effective-vertical-inheritance.html#cb8-66"></a>  relabund<span class="ot">&lt;-</span>population<span class="sc">/</span><span class="fu">rowSums</span>(population)</span>
+<span id="cb8-67"><a href="paper-1---effective-vertical-inheritance.html#cb8-67"></a>  <span class="sc">-</span> <span class="fu">rowSums</span>(relabund<span class="sc">*</span> <span class="fu">log</span>(relabund))</span>
+<span id="cb8-68"><a href="paper-1---effective-vertical-inheritance.html#cb8-68"></a>}</span>
+<span id="cb8-69"><a href="paper-1---effective-vertical-inheritance.html#cb8-69"></a></span>
+<span id="cb8-70"><a href="paper-1---effective-vertical-inheritance.html#cb8-70"></a>fitness_func <span class="ot">&lt;-</span> <span class="cf">function</span>(selection_parameter, optima, trait) {</span>
+<span id="cb8-71"><a href="paper-1---effective-vertical-inheritance.html#cb8-71"></a>  q <span class="ot">=</span> <span class="fu">exp</span>(((trait <span class="sc">-</span> optima)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="sc">-</span>selection_parameter)</span>
+<span id="cb8-72"><a href="paper-1---effective-vertical-inheritance.html#cb8-72"></a>  q</span>
+<span id="cb8-73"><a href="paper-1---effective-vertical-inheritance.html#cb8-73"></a>}</span>
+<span id="cb8-74"><a href="paper-1---effective-vertical-inheritance.html#cb8-74"></a></span>
+<span id="cb8-75"><a href="paper-1---effective-vertical-inheritance.html#cb8-75"></a></span>
+<span id="cb8-76"><a href="paper-1---effective-vertical-inheritance.html#cb8-76"></a>fitness_func_bacgen <span class="ot">&lt;-</span> <span class="cf">function</span>(selection_parameter,optima1, optima2, trait) {</span>
+<span id="cb8-77"><a href="paper-1---effective-vertical-inheritance.html#cb8-77"></a>  q <span class="ot">=</span> <span class="fu">exp</span>((((trait <span class="sc">-</span> <span class="fu">mean</span>(<span class="fu">c</span>(optima1, optima2)))<span class="sc">^</span><span class="dv">2</span>))<span class="sc">/</span> <span class="sc">-</span>selection_parameter)</span>
+<span id="cb8-78"><a href="paper-1---effective-vertical-inheritance.html#cb8-78"></a>  q</span>
+<span id="cb8-79"><a href="paper-1---effective-vertical-inheritance.html#cb8-79"></a>}</span>
+<span id="cb8-80"><a href="paper-1---effective-vertical-inheritance.html#cb8-80"></a></span>
+<span id="cb8-81"><a href="paper-1---effective-vertical-inheritance.html#cb8-81"></a>mutate_trait <span class="ot">&lt;-</span> <span class="cf">function</span>(trait, mutation_rate, mutation_sd) {</span>
+<span id="cb8-82"><a href="paper-1---effective-vertical-inheritance.html#cb8-82"></a>  mutated_trait <span class="ot">&lt;-</span> trait <span class="co">#+ rnorm(length(trait), mean = 0, sd = mutation_sd)</span></span>
+<span id="cb8-83"><a href="paper-1---effective-vertical-inheritance.html#cb8-83"></a>  mutate_mask <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fu">length</span>(trait)) <span class="sc">&lt;</span> mutation_rate</span>
+<span id="cb8-84"><a href="paper-1---effective-vertical-inheritance.html#cb8-84"></a>  mutated_trait[mutate_mask] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">sum</span>(mutate_mask), <span class="at">mean =</span> mutated_trait[mutate_mask], <span class="at">sd =</span> mutation_sd)</span>
+<span id="cb8-85"><a href="paper-1---effective-vertical-inheritance.html#cb8-85"></a>  mutated_trait</span>
+<span id="cb8-86"><a href="paper-1---effective-vertical-inheritance.html#cb8-86"></a>}</span>
+<span id="cb8-87"><a href="paper-1---effective-vertical-inheritance.html#cb8-87"></a></span>
+<span id="cb8-88"><a href="paper-1---effective-vertical-inheritance.html#cb8-88"></a></span>
+<span id="cb8-89"><a href="paper-1---effective-vertical-inheritance.html#cb8-89"></a>Rcpp<span class="sc">::</span><span class="fu">sourceCpp</span>(<span class="st">&#39;./evi_code/calccpp_fit.cpp&#39;</span>)</span>
+<span id="cb8-90"><a href="paper-1---effective-vertical-inheritance.html#cb8-90"></a><span class="fu">sourceCpp</span>(<span class="st">&quot;./evi_code/withingen_process.cpp&quot;</span>)</span>
+<span id="cb8-91"><a href="paper-1---effective-vertical-inheritance.html#cb8-91"></a><span class="fu">sourceCpp</span>(<span class="st">&quot;./evi_code/env_production_withingen.cpp&quot;</span>)</span>
+<span id="cb8-92"><a href="paper-1---effective-vertical-inheritance.html#cb8-92"></a>Rcpp<span class="sc">::</span><span class="fu">sourceCpp</span>(<span class="st">&quot;./evi_code/create_offspring_loop_vi.cpp&quot;</span>)</span></code></pre></div>
+<p>Below is the R code to run the effective vertical inheritance work, with blue highlighted code indicating that the code is bespoke for this section.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb9-1"><a href="paper-1---effective-vertical-inheritance.html#cb9-1"></a>lapply_wrapper_CPP<span class="ot">&lt;-</span><span class="cf">function</span>(XY,</span>
+<span id="cb9-2"><a href="paper-1---effective-vertical-inheritance.html#cb9-2"></a>                             HostPopulation, N_Microbes, envpoolsize, env_pool,fixed_envpool,generations,per_host_bac_gens,self_seed_prop,</span>
+<span id="cb9-3"><a href="paper-1---effective-vertical-inheritance.html#cb9-3"></a>                             selection_parameter_hosts,selection_parameter_microbes,host_trait_list,N_Species,traitpool_microbes,</span>
+<span id="cb9-4"><a href="paper-1---effective-vertical-inheritance.html#cb9-4"></a>                             generation_data_file,selection_parameter_env,env_cond_val,</span>
+<span id="cb9-5"><a href="paper-1---effective-vertical-inheritance.html#cb9-5"></a>                             microbiome_importances,host_microbe_optima,mutation_rate,mutation_sd,print_currentgen,env_type){</span>
+<span id="cb9-6"><a href="paper-1---effective-vertical-inheritance.html#cb9-6"></a>  temp_list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb9-7"><a href="paper-1---effective-vertical-inheritance.html#cb9-7"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Current X Value is&quot;</span>, XY[<span class="dv">1</span>], <span class="st">&quot;Current EnvCon value is&quot;</span>, XY[<span class="dv">2</span>]))</span>
+<span id="cb9-8"><a href="paper-1---effective-vertical-inheritance.html#cb9-8"></a>  <span class="fu">print</span>(env_type)</span>
+<span id="cb9-9"><a href="paper-1---effective-vertical-inheritance.html#cb9-9"></a>  gen_data<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb9-10"><a href="paper-1---effective-vertical-inheritance.html#cb9-10"></a>  microbe_names<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;Microbe&quot;</span>,<span class="dv">1</span><span class="sc">:</span>N_Species,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb9-11"><a href="paper-1---effective-vertical-inheritance.html#cb9-11"></a>  env_used <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb9-12"><a href="paper-1---effective-vertical-inheritance.html#cb9-12"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">nrow</span>(env_cond_val) <span class="sc">==</span> generations){</span>
+<span id="cb9-13"><a href="paper-1---effective-vertical-inheritance.html#cb9-13"></a>    <span class="fu">print</span>(<span class="st">&quot;env_cond_val should be a matrix of the same length as the number of generations you are simulating&quot;</span>)</span>
+<span id="cb9-14"><a href="paper-1---effective-vertical-inheritance.html#cb9-14"></a>    <span class="fu">stop</span>()</span>
+<span id="cb9-15"><a href="paper-1---effective-vertical-inheritance.html#cb9-15"></a>  }</span>
+<span id="cb9-16"><a href="paper-1---effective-vertical-inheritance.html#cb9-16"></a>  init_microbial_fitness<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nrow =</span> <span class="fu">length</span>(traitpool_microbes),<span class="at">ncol=</span><span class="fu">length</span>(host_microbe_optima))</span>
+<span id="cb9-17"><a href="paper-1---effective-vertical-inheritance.html#cb9-17"></a>  </span>
+<span id="cb9-18"><a href="paper-1---effective-vertical-inheritance.html#cb9-18"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(init_microbial_fitness)){</span>
+<span id="cb9-19"><a href="paper-1---effective-vertical-inheritance.html#cb9-19"></a>    init_microbial_fitness[,i] <span class="ot">&lt;-</span> <span class="fu">fitness_func_bacgen</span>(<span class="at">selection_parameter =</span> selection_parameter_microbes,</span>
+<span id="cb9-20"><a href="paper-1---effective-vertical-inheritance.html#cb9-20"></a>                                                      <span class="at">optima1 =</span> host_microbe_optima[i],</span>
+<span id="cb9-21"><a href="paper-1---effective-vertical-inheritance.html#cb9-21"></a>                                                      <span class="at">optima2 =</span> env_cond_val[<span class="dv">1</span>,<span class="dv">1</span>],<span class="at">trait =</span> traitpool_microbes)</span>
+<span id="cb9-22"><a href="paper-1---effective-vertical-inheritance.html#cb9-22"></a>  }</span>
+<span id="cb9-23"><a href="paper-1---effective-vertical-inheritance.html#cb9-23"></a>  init_microbial_fitness<span class="ot">&lt;-</span>init_microbial_fitness<span class="co">#[HostPopulation&gt;0]</span></span>
+<span id="cb9-24"><a href="paper-1---effective-vertical-inheritance.html#cb9-24"></a>  init_microbial_fitness<span class="ot">&lt;-</span><span class="fu">weighted.mean</span>(<span class="at">x =</span> init_microbial_fitness,<span class="at">w =</span> HostPopulation)</span>
+<span id="cb9-25"><a href="paper-1---effective-vertical-inheritance.html#cb9-25"></a>  init_host_fitness<span class="ot">&lt;-</span><span class="fu">vector</span>()</span>
+<span id="cb9-26"><a href="paper-1---effective-vertical-inheritance.html#cb9-26"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(HostPopulation)){</span>
+<span id="cb9-27"><a href="paper-1---effective-vertical-inheritance.html#cb9-27"></a>    mean_microbial_trait_val<span class="ot">&lt;-</span> <span class="fu">sum</span>(traitpool_microbes <span class="sc">*</span> HostPopulation[,i])<span class="sc">/</span>N_Microbes</span>
+<span id="cb9-28"><a href="paper-1---effective-vertical-inheritance.html#cb9-28"></a>    composite_host_trait<span class="ot">&lt;-</span>((mean_microbial_trait_val <span class="sc">*</span> microbiome_importances[i]) <span class="sc">+</span> (host_microbe_optima[i] <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>microbiome_importances[i])))</span>
+<span id="cb9-29"><a href="paper-1---effective-vertical-inheritance.html#cb9-29"></a>    hostfitness<span class="ot">&lt;-</span><span class="fu">fitness_func</span>(<span class="at">selection_parameter =</span> selection_parameter_hosts, <span class="at">trait =</span> composite_host_trait,<span class="at">optima =</span> env_cond_val[<span class="dv">1</span>,<span class="dv">1</span>])</span>
+<span id="cb9-30"><a href="paper-1---effective-vertical-inheritance.html#cb9-30"></a>    init_host_fitness[i]<span class="ot">&lt;-</span>hostfitness</span>
+<span id="cb9-31"><a href="paper-1---effective-vertical-inheritance.html#cb9-31"></a>  }</span>
+<span id="cb9-32"><a href="paper-1---effective-vertical-inheritance.html#cb9-32"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">ncol</span>(env_cond_val)<span class="sc">==</span>per_host_bac_gens){</span>
+<span id="cb9-33"><a href="paper-1---effective-vertical-inheritance.html#cb9-33"></a>    <span class="fu">print</span>(<span class="st">&quot;Number of columns in env_conditions should be the number of bacterial generations&quot;</span>)</span>
+<span id="cb9-34"><a href="paper-1---effective-vertical-inheritance.html#cb9-34"></a>    <span class="fu">stop</span>()</span>
+<span id="cb9-35"><a href="paper-1---effective-vertical-inheritance.html#cb9-35"></a>  }</span>
+<span id="cb9-36"><a href="paper-1---effective-vertical-inheritance.html#cb9-36"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(self_seed_prop)){</span>
+<span id="cb9-37"><a href="paper-1---effective-vertical-inheritance.html#cb9-37"></a>    <span class="fu">print</span>(<span class="st">&quot;Self seeding proportion is NA, please correct&quot;</span>)</span>
+<span id="cb9-38"><a href="paper-1---effective-vertical-inheritance.html#cb9-38"></a>  }</span>
+<span id="cb9-39"><a href="paper-1---effective-vertical-inheritance.html#cb9-39"></a>  <span class="cf">for</span> (generation <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>generations) {</span>
+<span id="cb9-40"><a href="paper-1---effective-vertical-inheritance.html#cb9-40"></a>    <span class="cf">if</span>(generation <span class="sc">==</span><span class="dv">1</span>){</span>
+<span id="cb9-41"><a href="paper-1---effective-vertical-inheritance.html#cb9-41"></a>      env_used<span class="ot">&lt;-</span>fixed_envpool</span>
+<span id="cb9-42"><a href="paper-1---effective-vertical-inheritance.html#cb9-42"></a>    }</span>
+<span id="cb9-43"><a href="paper-1---effective-vertical-inheritance.html#cb9-43"></a>    <span class="cf">if</span>(per_host_bac_gens <span class="sc">==</span> <span class="dv">1</span>){</span>
+<span id="cb9-44"><a href="paper-1---effective-vertical-inheritance.html#cb9-44"></a>      self_seed_prop<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb9-45"><a href="paper-1---effective-vertical-inheritance.html#cb9-45"></a>    }</span>
+<span id="cb9-46"><a href="paper-1---effective-vertical-inheritance.html#cb9-46"></a>    env_cond_val_used<span class="ot">&lt;-</span><span class="fu">as.vector</span>(env_cond_val[generation,])</span>
+<span id="cb9-47"><a href="paper-1---effective-vertical-inheritance.html#cb9-47"></a>    vi_ests<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="at">nrow =</span> <span class="dv">400</span>,<span class="at">ncol =</span> <span class="dv">200</span>)</span>
+<span id="cb9-48"><a href="paper-1---effective-vertical-inheritance.html#cb9-48"></a>    <span class="cf">for</span>(bacgen <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>per_host_bac_gens){</span>
+<span id="cb9-49"><a href="paper-1---effective-vertical-inheritance.html#cb9-49"></a>      </span>
+<span id="cb9-50"><a href="paper-1---effective-vertical-inheritance.html#cb9-50"></a>      <span class="cf">if</span>(XY[<span class="dv">2</span>] <span class="sc">+</span> XY[<span class="dv">3</span>] <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb9-51"><a href="paper-1---effective-vertical-inheritance.html#cb9-51"></a>        <span class="fu">print</span>(<span class="st">&quot;The contribution of the fixed environment (Y) and the the autocthonous environment (var_env_con) is greater than 1, please correct this &quot;</span>)</span>
+<span id="cb9-52"><a href="paper-1---effective-vertical-inheritance.html#cb9-52"></a>        <span class="fu">stop</span>()</span>
+<span id="cb9-53"><a href="paper-1---effective-vertical-inheritance.html#cb9-53"></a>      }</span>
+<span id="cb9-54"><a href="paper-1---effective-vertical-inheritance.html#cb9-54"></a>      gen_env_cond<span class="ot">&lt;-</span>env_cond_val_used[bacgen]</span>
+<span id="cb9-55"><a href="paper-1---effective-vertical-inheritance.html#cb9-55"></a>      env_used<span class="ot">&lt;-</span><span class="fu">process_microbe_probs</span>(<span class="at">env_cond_val =</span> gen_env_cond,</span>
+<span id="cb9-56"><a href="paper-1---effective-vertical-inheritance.html#cb9-56"></a>                                      <span class="at">fixed_envpool =</span> fixed_envpool,</span>
+<span id="cb9-57"><a href="paper-1---effective-vertical-inheritance.html#cb9-57"></a>                                      <span class="at">HostPopulation =</span> HostPopulation,</span>
+<span id="cb9-58"><a href="paper-1---effective-vertical-inheritance.html#cb9-58"></a>                                      <span class="at">N_Microbes =</span> N_Microbes,</span>
+<span id="cb9-59"><a href="paper-1---effective-vertical-inheritance.html#cb9-59"></a>                                      <span class="at">envpoolsize =</span> envpoolsize,</span>
+<span id="cb9-60"><a href="paper-1---effective-vertical-inheritance.html#cb9-60"></a>                                      <span class="at">selection_parameter_env =</span> selection_parameter_env,</span>
+<span id="cb9-61"><a href="paper-1---effective-vertical-inheritance.html#cb9-61"></a>                                      <span class="at">XY =</span> XY,</span>
+<span id="cb9-62"><a href="paper-1---effective-vertical-inheritance.html#cb9-62"></a>                                      <span class="at">traitpool_microbes =</span> traitpool_microbes,<span class="at">env_used =</span> env_used</span>
+<span id="cb9-63"><a href="paper-1---effective-vertical-inheritance.html#cb9-63"></a>      )</span>
+<span id="cb9-64"><a href="paper-1---effective-vertical-inheritance.html#cb9-64"></a>      env_fits<span class="ot">&lt;-</span><span class="fu">weighted.mean</span>(<span class="at">x =</span> env_used[,<span class="dv">3</span>],<span class="at">w =</span> env_used[,<span class="dv">8</span>])</span>
+<span id="cb9-65"><a href="paper-1---effective-vertical-inheritance.html#cb9-65"></a>      env_used<span class="ot">&lt;-</span>env_used[,<span class="dv">8</span>]</span>
+<span id="cb9-66"><a href="paper-1---effective-vertical-inheritance.html#cb9-66"></a>      </span>
+<span id="cb9-67"><a href="paper-1---effective-vertical-inheritance.html#cb9-67"></a>      <span class="fu">names</span>(env_used)<span class="ot">&lt;-</span><span class="fu">names</span>(fixed_envpool)<span class="co">#rownames(microbe_probs)</span></span>
+<span id="cb9-68"><a href="paper-1---effective-vertical-inheritance.html#cb9-68"></a>      HostPopulation<span class="ot">&lt;-</span><span class="fu">process_host_cpp</span>(<span class="at">HostPopulation =</span> HostPopulation,</span>
+<span id="cb9-69"><a href="paper-1---effective-vertical-inheritance.html#cb9-69"></a>                                       <span class="at">selection_parameter_microbes =</span> selection_parameter_microbes,</span>
+<span id="cb9-70"><a href="paper-1---effective-vertical-inheritance.html#cb9-70"></a>                                       <span class="at">host_microbe_optima =</span> host_microbe_optima ,</span>
+<span id="cb9-71"><a href="paper-1---effective-vertical-inheritance.html#cb9-71"></a>                                       <span class="at">env_condition =</span> env_cond_val_used[bacgen],</span>
+<span id="cb9-72"><a href="paper-1---effective-vertical-inheritance.html#cb9-72"></a>                                       <span class="at">traitpool_microbes =</span> traitpool_microbes,</span>
+<span id="cb9-73"><a href="paper-1---effective-vertical-inheritance.html#cb9-73"></a>                                       <span class="at">N_Microbes =</span> N_Microbes,</span>
+<span id="cb9-74"><a href="paper-1---effective-vertical-inheritance.html#cb9-74"></a>                                       <span class="at">self_seed_prop =</span> self_seed_prop,<span class="at">env_used =</span> env_used)</span>
+<span id="cb9-75"><a href="paper-1---effective-vertical-inheritance.html#cb9-75"></a>      <span class="cf">if</span>(generation <span class="sc">==</span> <span class="dv">499</span>){</span>
+<span id="cb9-76"><a href="paper-1---effective-vertical-inheritance.html#cb9-76"></a>        vi_ests[,bacgen]<span class="ot">&lt;-</span>HostPopulation[,<span class="dv">1</span>]</span>
+<span id="cb9-77"><a href="paper-1---effective-vertical-inheritance.html#cb9-77"></a>      }</span>
+<span id="cb9-78"><a href="paper-1---effective-vertical-inheritance.html#cb9-78"></a>    }</span>
+<span id="cb9-79"><a href="paper-1---effective-vertical-inheritance.html#cb9-79"></a>    <span class="cf">if</span>(generation <span class="sc">==</span> <span class="dv">499</span>){</span>
+<span id="cb9-80"><a href="paper-1---effective-vertical-inheritance.html#cb9-80"></a>      <span class="fu">write_rds</span>(vi_ests,<span class="fu">paste</span>(<span class="st">&quot;X&quot;</span>,env_type,XY[<span class="dv">1</span>],<span class="st">&quot;vi_ests.RDS&quot;</span>,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>))</span>
+<span id="cb9-81"><a href="paper-1---effective-vertical-inheritance.html#cb9-81"></a>    }</span>
+<span id="cb9-82"><a href="paper-1---effective-vertical-inheritance.html#cb9-82"></a>    host_fitnessvector<span class="ot">&lt;-</span><span class="fu">numeric</span>()</span>
+<span id="cb9-83"><a href="paper-1---effective-vertical-inheritance.html#cb9-83"></a>    host_fitnessvector <span class="ot">&lt;-</span> <span class="fu">calculate_host_fitness_cpp</span>(<span class="fu">as.matrix</span>(HostPopulation),</span>
+<span id="cb9-84"><a href="paper-1---effective-vertical-inheritance.html#cb9-84"></a>                                                     traitpool_microbes, microbiome_importances,</span>
+<span id="cb9-85"><a href="paper-1---effective-vertical-inheritance.html#cb9-85"></a>                                                     host_microbe_optima,</span>
+<span id="cb9-86"><a href="paper-1---effective-vertical-inheritance.html#cb9-86"></a>                                                     selection_parameter_hosts, env_cond_val_used[per_host_bac_gens])</span>
+<span id="cb9-87"><a href="paper-1---effective-vertical-inheritance.html#cb9-87"></a>    </span>
+<span id="cb9-88"><a href="paper-1---effective-vertical-inheritance.html#cb9-88"></a>    nomicrobiomehost_fitnessvector<span class="ot">&lt;-</span><span class="fu">numeric</span>()</span>
+<span id="cb9-89"><a href="paper-1---effective-vertical-inheritance.html#cb9-89"></a>    nomicrobiomehost_fitnessvector <span class="ot">&lt;-</span> <span class="fu">calculate_host_fitness_cpp</span>(<span class="fu">as.matrix</span>(HostPopulation),</span>
+<span id="cb9-90"><a href="paper-1---effective-vertical-inheritance.html#cb9-90"></a>                                                                 traitpool_microbes,<span class="fu">rep</span>(<span class="dv">0</span>,<span class="fu">length</span>(microbiome_importances)),</span>
+<span id="cb9-91"><a href="paper-1---effective-vertical-inheritance.html#cb9-91"></a>                                                                 host_microbe_optima,</span>
+<span id="cb9-92"><a href="paper-1---effective-vertical-inheritance.html#cb9-92"></a>                                                                 selection_parameter_hosts, env_cond_val_used[per_host_bac_gens])</span>
+<span id="cb9-93"><a href="paper-1---effective-vertical-inheritance.html#cb9-93"></a>    hostfitness_abs<span class="ot">&lt;-</span>host_fitnessvector</span>
+<span id="cb9-94"><a href="paper-1---effective-vertical-inheritance.html#cb9-94"></a>    host_fitnessvector<span class="ot">&lt;-</span>host_fitnessvector<span class="co">#/mean(host_fitnessvector)</span></span>
+<span id="cb9-95"><a href="paper-1---effective-vertical-inheritance.html#cb9-95"></a>    HostPopulationInt<span class="ot">&lt;-</span><span class="fu">sample</span>(<span class="fu">colnames</span>(HostPopulation),<span class="fu">ncol</span>(HostPopulation),<span class="at">replace =</span> T,<span class="at">prob =</span> host_fitnessvector)</span>
+<span id="cb9-96"><a href="paper-1---effective-vertical-inheritance.html#cb9-96"></a>    host_microbe_optima_prevgen<span class="ot">&lt;-</span>host_microbe_optima</span>
+<span id="cb9-97"><a href="paper-1---effective-vertical-inheritance.html#cb9-97"></a>    HostPopulation<span class="ot">&lt;-</span>HostPopulation[ , HostPopulationInt]</span>
+<span id="cb9-98"><a href="paper-1---effective-vertical-inheritance.html#cb9-98"></a>    host_microbe_optima<span class="ot">&lt;-</span>host_microbe_optima[HostPopulationInt]</span>
+<span id="cb9-99"><a href="paper-1---effective-vertical-inheritance.html#cb9-99"></a>    microbiome_importances<span class="ot">&lt;-</span>microbiome_importances[HostPopulationInt]</span>
+<span id="cb9-100"><a href="paper-1---effective-vertical-inheritance.html#cb9-100"></a>    <span class="cf">if</span>(mutation_rate<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb9-101"><a href="paper-1---effective-vertical-inheritance.html#cb9-101"></a>      host_microbe_optima <span class="ot">&lt;-</span> <span class="fu">mutate_trait</span>(host_microbe_optima, mutation_rate, mutation_sd)</span>
+<span id="cb9-102"><a href="paper-1---effective-vertical-inheritance.html#cb9-102"></a>    }</span>
+<span id="cb9-103"><a href="paper-1---effective-vertical-inheritance.html#cb9-103"></a>    HostPopulation<span class="ot">&lt;-</span><span class="fu">as.matrix</span>(HostPopulation)</span>
+<span id="cb9-104"><a href="paper-1---effective-vertical-inheritance.html#cb9-104"></a>    <span class="fu">names</span>(host_microbe_optima)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;Host&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(HostPopulation),<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb9-105"><a href="paper-1---effective-vertical-inheritance.html#cb9-105"></a>    <span class="fu">names</span>(microbiome_importances)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;Host&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(HostPopulation),<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb9-106"><a href="paper-1---effective-vertical-inheritance.html#cb9-106"></a>    <span class="cf">if</span>(print_currentgen<span class="sc">==</span>T){<span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Current Generation is&quot;</span>, generation))}</span>
+<span id="cb9-107"><a href="paper-1---effective-vertical-inheritance.html#cb9-107"></a>    new_gen <span class="ot">&lt;-</span> <span class="fu">Create_OffSpring_Pop_cpp</span>(<span class="at">host_pop =</span> HostPopulation,</span>
+<span id="cb9-108"><a href="paper-1---effective-vertical-inheritance.html#cb9-108"></a>                                        <span class="at">n_micro =</span> N_Microbes,</span>
+<span id="cb9-109"><a href="paper-1---effective-vertical-inheritance.html#cb9-109"></a>                                        <span class="at">env_pool =</span> env_used,</span>
+<span id="cb9-110"><a href="paper-1---effective-vertical-inheritance.html#cb9-110"></a>                                        <span class="at">envpoolsize =</span> envpoolsize,</span>
+<span id="cb9-111"><a href="paper-1---effective-vertical-inheritance.html#cb9-111"></a>                                        <span class="at">X =</span> XY[<span class="dv">1</span>],</span>
+<span id="cb9-112"><a href="paper-1---effective-vertical-inheritance.html#cb9-112"></a>                                        <span class="at">fixed_envpool =</span> fixed_envpool,</span>
+<span id="cb9-113"><a href="paper-1---effective-vertical-inheritance.html#cb9-113"></a>                                        <span class="at">microbe_trait_list=</span>traitpool_microbes,</span>
+<span id="cb9-114"><a href="paper-1---effective-vertical-inheritance.html#cb9-114"></a>                                        <span class="at">selection_parameter_microbes=</span>selection_parameter_microbes,</span>
+<span id="cb9-115"><a href="paper-1---effective-vertical-inheritance.html#cb9-115"></a>                                        <span class="at">selection_parameter_hosts =</span> selection_parameter_hosts,</span>
+<span id="cb9-116"><a href="paper-1---effective-vertical-inheritance.html#cb9-116"></a>                                        <span class="at">host_microbe_optima=</span>host_microbe_optima,</span>
+<span id="cb9-117"><a href="paper-1---effective-vertical-inheritance.html#cb9-117"></a>                                        <span class="at">N_Species=</span>N_Species,</span>
+<span id="cb9-118"><a href="paper-1---effective-vertical-inheritance.html#cb9-118"></a>                                        <span class="at">env_condition=</span>env_cond_val_used[per_host_bac_gens],</span>
+<span id="cb9-119"><a href="paper-1---effective-vertical-inheritance.html#cb9-119"></a>                                        <span class="at">generation =</span> generation)</span>
+<span id="cb9-120"><a href="paper-1---effective-vertical-inheritance.html#cb9-120"></a>    HostPopulation <span class="ot">&lt;-</span> new_gen<span class="sc">$</span>Child</span>
+<span id="cb9-121"><a href="paper-1---effective-vertical-inheritance.html#cb9-121"></a>    BrayDiv<span class="ot">&lt;-</span><span class="fu">vegdist</span>(<span class="fu">t</span>(HostPopulation),<span class="at">method=</span><span class="st">&quot;bray&quot;</span>)</span>
+<span id="cb9-122"><a href="paper-1---effective-vertical-inheritance.html#cb9-122"></a>    div_pergen<span class="ot">&lt;-</span><span class="fu">calc_div</span>(<span class="fu">t</span>(new_gen<span class="sc">$</span>Child))<span class="sc">/</span><span class="fu">log</span>(<span class="fu">calc_rich</span>(new_gen<span class="sc">$</span>Child))</span>
+<span id="cb9-123"><a href="paper-1---effective-vertical-inheritance.html#cb9-123"></a>    new_gen<span class="sc">$</span>HostFitness_Abs<span class="ot">&lt;-</span>(hostfitness_abs)</span>
+<span id="cb9-124"><a href="paper-1---effective-vertical-inheritance.html#cb9-124"></a>    new_gen<span class="sc">$</span>nomicrobiomehost_fitnessvector<span class="ot">&lt;-</span>nomicrobiomehost_fitnessvector</span>
+<span id="cb9-125"><a href="paper-1---effective-vertical-inheritance.html#cb9-125"></a>    new_gen<span class="sc">$</span>BrayDiv<span class="ot">&lt;-</span>BrayDiv</span>
+<span id="cb9-126"><a href="paper-1---effective-vertical-inheritance.html#cb9-126"></a>    new_gen<span class="sc">$</span>HostMicrobeOptima<span class="ot">&lt;-</span>host_microbe_optima_prevgen</span>
+<span id="cb9-127"><a href="paper-1---effective-vertical-inheritance.html#cb9-127"></a>    gen_data[[generation]]<span class="ot">&lt;-</span><span class="fu">list</span>(div_pergen,new_gen<span class="sc">$</span>HostFitness_Abs,new_gen<span class="sc">$</span>microbefitness,env_used,</span>
+<span id="cb9-128"><a href="paper-1---effective-vertical-inheritance.html#cb9-128"></a>                                 env_fits,new_gen<span class="sc">$</span>HostMicrobeOptima,new_gen<span class="sc">$</span>nomicrobiomehost_fitnessvector,new_gen<span class="sc">$</span>microbe_samplingprob,</span>
+<span id="cb9-129"><a href="paper-1---effective-vertical-inheritance.html#cb9-129"></a>                                 microbiome_importances,new_gen<span class="sc">$</span>BrayDiv)</span>
+<span id="cb9-130"><a href="paper-1---effective-vertical-inheritance.html#cb9-130"></a>    <span class="fu">names</span>(gen_data[[generation]])<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;Diversity&quot;</span>,<span class="st">&quot;HostFitness&quot;</span>,<span class="st">&quot;MicrobeFitness&quot;</span>,<span class="st">&quot;env_used&quot;</span>,<span class="st">&quot;env_fits&quot;</span></span>
+<span id="cb9-131"><a href="paper-1---effective-vertical-inheritance.html#cb9-131"></a>                                     ,<span class="st">&quot;HostMicrobeOptima&quot;</span>,<span class="st">&quot;nomicrobiomehost_fitnessvector&quot;</span>,</span>
+<span id="cb9-132"><a href="paper-1---effective-vertical-inheritance.html#cb9-132"></a>                                     <span class="st">&quot;microbe_samplingprob&quot;</span>,<span class="st">&quot;microbiome_importances&quot;</span>,<span class="st">&quot;BrayDiv&quot;</span>)<span class="co">#,&quot;HostPrefOptima&quot;,&quot;HostMicrobeOptima&quot;)</span></span>
+<span id="cb9-133"><a href="paper-1---effective-vertical-inheritance.html#cb9-133"></a>  }</span>
+<span id="cb9-134"><a href="paper-1---effective-vertical-inheritance.html#cb9-134"></a>  new_gen<span class="sc">$</span>GenData<span class="ot">&lt;-</span>gen_data</span>
+<span id="cb9-135"><a href="paper-1---effective-vertical-inheritance.html#cb9-135"></a>  new_gen<span class="sc">$</span>init_host_fitness<span class="ot">&lt;-</span>init_host_fitness</span>
+<span id="cb9-136"><a href="paper-1---effective-vertical-inheritance.html#cb9-136"></a>  new_gen<span class="sc">$</span>init_microbe_fitness<span class="ot">&lt;-</span>init_microbial_fitness</span>
+<span id="cb9-137"><a href="paper-1---effective-vertical-inheritance.html#cb9-137"></a>  temp_list[[<span class="fu">paste0</span>(<span class="st">&quot;X&quot;</span>, XY[<span class="dv">1</span>], <span class="st">&quot;_Y&quot;</span>, XY[<span class="dv">2</span>],<span class="st">&quot;_EnvCont&quot;</span>,XY[<span class="dv">3</span>],<span class="st">&quot;_HostSel&quot;</span>,XY[<span class="dv">4</span>],<span class="st">&quot;_MicrobeSel&quot;</span>,XY[<span class="dv">5</span>])]] <span class="ot">&lt;-</span> new_gen</span>
+<span id="cb9-138"><a href="paper-1---effective-vertical-inheritance.html#cb9-138"></a>  temp_list</span>
+<span id="cb9-139"><a href="paper-1---effective-vertical-inheritance.html#cb9-139"></a>}</span></code></pre></div>
+<div id="running-an-effective-vi-simulation" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Running an effective VI simulation<a href="paper-1---effective-vertical-inheritance.html#running-an-effective-vi-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb10-1"><a href="paper-1---effective-vertical-inheritance.html#cb10-1"></a>Host_PopSize<span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb10-2"><a href="paper-1---effective-vertical-inheritance.html#cb10-2"></a>MicrobePopSize<span class="ot">=</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span><span class="co">#0000 #n_micro</span></span>
+<span id="cb10-3"><a href="paper-1---effective-vertical-inheritance.html#cb10-3"></a>EnvPoolSize<span class="ot">=</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span><span class="co">#0000</span></span>
+<span id="cb10-4"><a href="paper-1---effective-vertical-inheritance.html#cb10-4"></a>N_Species <span class="ot">=</span><span class="dv">400</span></span>
+<span id="cb10-5"><a href="paper-1---effective-vertical-inheritance.html#cb10-5"></a>InitPopulation<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">200</span>, <span class="at">ncol=</span>Host_PopSize)</span>
+<span id="cb10-6"><a href="paper-1---effective-vertical-inheritance.html#cb10-6"></a>InitPopulation<span class="ot">&lt;-</span><span class="fu">apply</span>(InitPopulation,<span class="at">MARGIN=</span><span class="dv">2</span>,<span class="at">FUN=</span><span class="cf">function</span>(x){</span>
+<span id="cb10-7"><a href="paper-1---effective-vertical-inheritance.html#cb10-7"></a>  <span class="fu">rmultinom</span>(<span class="at">n=</span><span class="dv">1</span>,<span class="at">size =</span> MicrobePopSize, <span class="at">prob =</span><span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">200</span>,<span class="dv">200</span>))</span>
+<span id="cb10-8"><a href="paper-1---effective-vertical-inheritance.html#cb10-8"></a>})</span>
+<span id="cb10-9"><a href="paper-1---effective-vertical-inheritance.html#cb10-9"></a><span class="fu">rownames</span>(InitPopulation)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;Microbe&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb10-10"><a href="paper-1---effective-vertical-inheritance.html#cb10-10"></a><span class="fu">colnames</span>(InitPopulation)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;Host&quot;</span>,<span class="dv">1</span><span class="sc">:</span>Host_PopSize,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb10-11"><a href="paper-1---effective-vertical-inheritance.html#cb10-11"></a></span>
+<span id="cb10-12"><a href="paper-1---effective-vertical-inheritance.html#cb10-12"></a></span>
+<span id="cb10-13"><a href="paper-1---effective-vertical-inheritance.html#cb10-13"></a>VI_InitPopulation<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="at">data=</span><span class="dv">0</span>,<span class="at">nrow =</span> <span class="dv">200</span>, <span class="at">ncol=</span>Host_PopSize)</span>
+<span id="cb10-14"><a href="paper-1---effective-vertical-inheritance.html#cb10-14"></a><span class="fu">rownames</span>(VI_InitPopulation)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;VI_Microbe&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb10-15"><a href="paper-1---effective-vertical-inheritance.html#cb10-15"></a><span class="fu">colnames</span>(VI_InitPopulation)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;Host&quot;</span>,<span class="dv">1</span><span class="sc">:</span>Host_PopSize,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb10-16"><a href="paper-1---effective-vertical-inheritance.html#cb10-16"></a>InitPopulation<span class="ot">&lt;-</span><span class="fu">rbind</span>(InitPopulation,VI_InitPopulation)</span>
+<span id="cb10-17"><a href="paper-1---effective-vertical-inheritance.html#cb10-17"></a></span>
+<span id="cb10-18"><a href="paper-1---effective-vertical-inheritance.html#cb10-18"></a></span>
+<span id="cb10-19"><a href="paper-1---effective-vertical-inheritance.html#cb10-19"></a>EnvPool<span class="ot">&lt;-</span><span class="fu">rep</span>(EnvPoolSize<span class="sc">/</span><span class="dv">200</span>,<span class="dv">200</span>)</span>
+<span id="cb10-20"><a href="paper-1---effective-vertical-inheritance.html#cb10-20"></a><span class="fu">names</span>(EnvPool)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;Microbe&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb10-21"><a href="paper-1---effective-vertical-inheritance.html#cb10-21"></a></span>
+<span id="cb10-22"><a href="paper-1---effective-vertical-inheritance.html#cb10-22"></a>VI_EnvPool<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">200</span>)</span>
+<span id="cb10-23"><a href="paper-1---effective-vertical-inheritance.html#cb10-23"></a><span class="fu">names</span>(VI_EnvPool)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;VI_Microbe&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb10-24"><a href="paper-1---effective-vertical-inheritance.html#cb10-24"></a>EnvPool<span class="ot">&lt;-</span><span class="fu">c</span>(EnvPool,VI_EnvPool)</span>
+<span id="cb10-25"><a href="paper-1---effective-vertical-inheritance.html#cb10-25"></a></span>
+<span id="cb10-26"><a href="paper-1---effective-vertical-inheritance.html#cb10-26"></a>fixed_envpool<span class="ot">&lt;-</span>EnvPool</span>
+<span id="cb10-27"><a href="paper-1---effective-vertical-inheritance.html#cb10-27"></a></span>
+<span id="cb10-28"><a href="paper-1---effective-vertical-inheritance.html#cb10-28"></a>traitpool_microbes<span class="ot">&lt;-</span><span class="fu">runif</span>(<span class="dv">200</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb10-29"><a href="paper-1---effective-vertical-inheritance.html#cb10-29"></a>traitpool_microbes<span class="ot">&lt;-</span><span class="fu">c</span>(traitpool_microbes,traitpool_microbes)</span>
+<span id="cb10-30"><a href="paper-1---effective-vertical-inheritance.html#cb10-30"></a><span class="fu">names</span>(traitpool_microbes)<span class="ot">&lt;-</span><span class="fu">names</span>(EnvPool)</span>
+<span id="cb10-31"><a href="paper-1---effective-vertical-inheritance.html#cb10-31"></a>mnames<span class="ot">&lt;-</span><span class="fu">colnames</span>(InitPopulation)</span>
+<span id="cb10-32"><a href="paper-1---effective-vertical-inheritance.html#cb10-32"></a>host_microbe_optima<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="dv">0</span>,Host_PopSize)</span>
+<span id="cb10-33"><a href="paper-1---effective-vertical-inheritance.html#cb10-33"></a><span class="fu">names</span>(host_microbe_optima)<span class="ot">&lt;-</span>mnames</span>
+<span id="cb10-34"><a href="paper-1---effective-vertical-inheritance.html#cb10-34"></a>microbiome_importances<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="dv">1</span>,Host_PopSize)<span class="co">#runif(Host_PopSize,0,1)</span></span>
+<span id="cb10-35"><a href="paper-1---effective-vertical-inheritance.html#cb10-35"></a><span class="fu">names</span>(microbiome_importances)<span class="ot">&lt;-</span>mnames</span>
+<span id="cb10-36"><a href="paper-1---effective-vertical-inheritance.html#cb10-36"></a></span>
+<span id="cb10-37"><a href="paper-1---effective-vertical-inheritance.html#cb10-37"></a></span>
+<span id="cb10-38"><a href="paper-1---effective-vertical-inheritance.html#cb10-38"></a></span>
+<span id="cb10-39"><a href="paper-1---effective-vertical-inheritance.html#cb10-39"></a>N_HostGens<span class="ot">=</span><span class="dv">800</span></span>
+<span id="cb10-40"><a href="paper-1---effective-vertical-inheritance.html#cb10-40"></a>start <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="at">length.out =</span> N_HostGens<span class="sc">*</span><span class="fl">0.2</span>)</span>
+<span id="cb10-41"><a href="paper-1---effective-vertical-inheritance.html#cb10-41"></a>mid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="at">length.out =</span> N_HostGens<span class="sc">*</span><span class="fl">0.8</span>)</span>
+<span id="cb10-42"><a href="paper-1---effective-vertical-inheritance.html#cb10-42"></a>lowac_incvar<span class="ot">&lt;-</span><span class="fu">sapply</span>(<span class="fu">c</span>(start,mid)<span class="sc">*</span><span class="fl">2.8</span>, <span class="cf">function</span>(x){<span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="dv">0</span>,x)})</span>
+<span id="cb10-43"><a href="paper-1---effective-vertical-inheritance.html#cb10-43"></a>expand_vector<span class="ot">&lt;-</span><span class="cf">function</span>(vector, N) {</span>
+<span id="cb10-44"><a href="paper-1---effective-vertical-inheritance.html#cb10-44"></a>  expanded_vector <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb10-45"><a href="paper-1---effective-vertical-inheritance.html#cb10-45"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(vector) <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb10-46"><a href="paper-1---effective-vertical-inheritance.html#cb10-46"></a>    expanded_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(expanded_vector, vector[i], <span class="fu">seq</span>(vector[i], vector[i <span class="sc">+</span> <span class="dv">1</span>], <span class="at">length.out =</span> N))</span>
+<span id="cb10-47"><a href="paper-1---effective-vertical-inheritance.html#cb10-47"></a>  }</span>
+<span id="cb10-48"><a href="paper-1---effective-vertical-inheritance.html#cb10-48"></a>  <span class="fu">return</span>(expanded_vector[<span class="dv">1</span><span class="sc">:</span>(N<span class="sc">*</span><span class="dv">800</span>)])</span>
+<span id="cb10-49"><a href="paper-1---effective-vertical-inheritance.html#cb10-49"></a>}</span>
+<span id="cb10-50"><a href="paper-1---effective-vertical-inheritance.html#cb10-50"></a>env_vec<span class="ot">&lt;-</span><span class="fu">expand_vector</span>(lowac_incvar,<span class="dv">10</span>)</span>
+<span id="cb10-51"><a href="paper-1---effective-vertical-inheritance.html#cb10-51"></a>new_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(env_vec,<span class="at">nrow =</span> <span class="dv">800</span>,<span class="at">ncol =</span> <span class="dv">10</span>,<span class="at">byrow =</span> T)</span>
+<span id="cb10-52"><a href="paper-1---effective-vertical-inheritance.html#cb10-52"></a></span>
+<span id="cb10-53"><a href="paper-1---effective-vertical-inheritance.html#cb10-53"></a></span>
+<span id="cb10-54"><a href="paper-1---effective-vertical-inheritance.html#cb10-54"></a></span>
+<span id="cb10-55"><a href="paper-1---effective-vertical-inheritance.html#cb10-55"></a></span>
+<span id="cb10-56"><a href="paper-1---effective-vertical-inheritance.html#cb10-56"></a>combination<span class="ot">=</span><span class="fu">c</span>(</span>
+<span id="cb10-57"><a href="paper-1---effective-vertical-inheritance.html#cb10-57"></a>  <span class="fl">0.5</span>, <span class="co">#Proportion of vertical inheritance</span></span>
+<span id="cb10-58"><a href="paper-1---effective-vertical-inheritance.html#cb10-58"></a>  <span class="fl">0.05</span>, <span class="co">#Proportion of host &#39;shedding&#39; to the environment.</span></span>
+<span id="cb10-59"><a href="paper-1---effective-vertical-inheritance.html#cb10-59"></a>  <span class="fl">0.8</span>) <span class="co">#Proportion of environmental pool which contributes to subsequent environmental pool.</span></span>
+<span id="cb10-60"><a href="paper-1---effective-vertical-inheritance.html#cb10-60"></a>envtype<span class="ot">&lt;-</span><span class="fu">as.character</span>(<span class="st">&quot;DummyEnv&quot;</span>)</span>
+<span id="cb10-61"><a href="paper-1---effective-vertical-inheritance.html#cb10-61"></a>simulation_test <span class="ot">&lt;-</span> <span class="fu">lapply_wrapper_CPP</span>(</span>
+<span id="cb10-62"><a href="paper-1---effective-vertical-inheritance.html#cb10-62"></a>    <span class="at">XY =</span> combination,</span>
+<span id="cb10-63"><a href="paper-1---effective-vertical-inheritance.html#cb10-63"></a>    <span class="at">HostPopulation =</span> InitPopulation,</span>
+<span id="cb10-64"><a href="paper-1---effective-vertical-inheritance.html#cb10-64"></a>    <span class="at">N_Microbes =</span> MicrobePopSize,</span>
+<span id="cb10-65"><a href="paper-1---effective-vertical-inheritance.html#cb10-65"></a>    <span class="at">envpoolsize =</span> EnvPoolSize,</span>
+<span id="cb10-66"><a href="paper-1---effective-vertical-inheritance.html#cb10-66"></a>    <span class="at">env_pool =</span> EnvPool,</span>
+<span id="cb10-67"><a href="paper-1---effective-vertical-inheritance.html#cb10-67"></a>    <span class="at">generations =</span> <span class="fu">nrow</span>(new_mat),</span>
+<span id="cb10-68"><a href="paper-1---effective-vertical-inheritance.html#cb10-68"></a>    <span class="at">fixed_envpool =</span> fixed_envpool,</span>
+<span id="cb10-69"><a href="paper-1---effective-vertical-inheritance.html#cb10-69"></a>    <span class="at">selection_parameter_hosts =</span> <span class="dv">1</span>,</span>
+<span id="cb10-70"><a href="paper-1---effective-vertical-inheritance.html#cb10-70"></a>    <span class="at">selection_parameter_microbes =</span> <span class="dv">1</span>,</span>
+<span id="cb10-71"><a href="paper-1---effective-vertical-inheritance.html#cb10-71"></a>    <span class="at">traitpool_microbes =</span> traitpool_microbes,</span>
+<span id="cb10-72"><a href="paper-1---effective-vertical-inheritance.html#cb10-72"></a>    <span class="at">host_microbe_optima =</span> host_microbe_optima,</span>
+<span id="cb10-73"><a href="paper-1---effective-vertical-inheritance.html#cb10-73"></a>    <span class="at">selection_parameter_env =</span> <span class="dv">1</span>,</span>
+<span id="cb10-74"><a href="paper-1---effective-vertical-inheritance.html#cb10-74"></a>    <span class="at">env_cond_val =</span> new_mat,</span>
+<span id="cb10-75"><a href="paper-1---effective-vertical-inheritance.html#cb10-75"></a>    <span class="at">N_Species =</span> N_Species,</span>
+<span id="cb10-76"><a href="paper-1---effective-vertical-inheritance.html#cb10-76"></a>    <span class="at">microbiome_importances =</span> microbiome_importances,</span>
+<span id="cb10-77"><a href="paper-1---effective-vertical-inheritance.html#cb10-77"></a>    <span class="at">per_host_bac_gens =</span> <span class="fu">ncol</span>(new_mat),</span>
+<span id="cb10-78"><a href="paper-1---effective-vertical-inheritance.html#cb10-78"></a>    <span class="at">self_seed_prop =</span> <span class="fl">0.98</span>,</span>
+<span id="cb10-79"><a href="paper-1---effective-vertical-inheritance.html#cb10-79"></a>    <span class="at">generation_data_file =</span> <span class="cn">NA</span>,</span>
+<span id="cb10-80"><a href="paper-1---effective-vertical-inheritance.html#cb10-80"></a>    <span class="at">mutation_rate =</span> <span class="fl">0.0</span>,</span>
+<span id="cb10-81"><a href="paper-1---effective-vertical-inheritance.html#cb10-81"></a>    <span class="at">mutation_sd =</span> <span class="fl">0.0</span>,</span>
+<span id="cb10-82"><a href="paper-1---effective-vertical-inheritance.html#cb10-82"></a>    <span class="at">print_currentgen =</span> F,</span>
+<span id="cb10-83"><a href="paper-1---effective-vertical-inheritance.html#cb10-83"></a>    <span class="at">env_type=</span>envtype</span>
+<span id="cb10-84"><a href="paper-1---effective-vertical-inheritance.html#cb10-84"></a>  )</span></code></pre></div>
+<pre><code>## [1] &quot;Current X Value is 0.5 Current EnvCon value is 0.05&quot;
+## [1] &quot;DummyEnv&quot;</code></pre>
+<p>We have now run a simulation where we have measured effective vertical inheritance. We can analysis this as follows:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb12-1"><a href="paper-1---effective-vertical-inheritance.html#cb12-1"></a>viests<span class="ot">&lt;-</span><span class="fu">list.files</span>(<span class="at">pattern=</span><span class="st">&quot;X*ests.RDS&quot;</span>)</span>
+<span id="cb12-2"><a href="paper-1---effective-vertical-inheritance.html#cb12-2"></a>viests<span class="ot">&lt;-</span><span class="fu">lapply</span>(viests,read_rds)</span>
+<span id="cb12-3"><a href="paper-1---effective-vertical-inheritance.html#cb12-3"></a>viests<span class="ot">&lt;-</span><span class="fu">lapply</span>(viests,<span class="cf">function</span>(q){</span>
+<span id="cb12-4"><a href="paper-1---effective-vertical-inheritance.html#cb12-4"></a>  <span class="fu">colSums</span>(q[<span class="dv">201</span><span class="sc">:</span><span class="dv">400</span>,])<span class="sc">/</span><span class="fu">colSums</span>(q)</span>
+<span id="cb12-5"><a href="paper-1---effective-vertical-inheritance.html#cb12-5"></a>})</span>
+<span id="cb12-6"><a href="paper-1---effective-vertical-inheritance.html#cb12-6"></a></span>
+<span id="cb12-7"><a href="paper-1---effective-vertical-inheritance.html#cb12-7"></a><span class="fu">names</span>(viests)<span class="ot">&lt;-</span><span class="fu">list.files</span>(<span class="at">pattern=</span><span class="st">&quot;X*ests.RDS&quot;</span>)</span>
+<span id="cb12-8"><a href="paper-1---effective-vertical-inheritance.html#cb12-8"></a></span>
+<span id="cb12-9"><a href="paper-1---effective-vertical-inheritance.html#cb12-9"></a>viests<span class="ot">&lt;-</span><span class="fu">do.call</span>(<span class="st">&quot;rbind&quot;</span>,viests)</span>
+<span id="cb12-10"><a href="paper-1---effective-vertical-inheritance.html#cb12-10"></a>viests<span class="ot">&lt;-</span>reshape2<span class="sc">::</span><span class="fu">melt</span>(viests)</span>
+<span id="cb12-11"><a href="paper-1---effective-vertical-inheritance.html#cb12-11"></a>viests<span class="ot">&lt;-</span>viests[<span class="fu">complete.cases</span>(viests),]</span>
+<span id="cb12-12"><a href="paper-1---effective-vertical-inheritance.html#cb12-12"></a>viests<span class="sc">$</span>InitVert<span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;.RDS&quot;</span>,<span class="st">&quot;&quot;</span>,viests<span class="sc">$</span>Var1)</span>
+<span id="cb12-13"><a href="paper-1---effective-vertical-inheritance.html#cb12-13"></a>viests<span class="sc">$</span>InitVert<span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">word</span>(viests<span class="sc">$</span>InitVert,<span class="dv">3</span>,<span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb12-14"><a href="paper-1---effective-vertical-inheritance.html#cb12-14"></a><span class="co">#viests$InitVert&lt;-gsub(&quot;[^0-9.-]&quot;, &quot;&quot;, viests$InitVert)</span></span>
+<span id="cb12-15"><a href="paper-1---effective-vertical-inheritance.html#cb12-15"></a></span>
+<span id="cb12-16"><a href="paper-1---effective-vertical-inheritance.html#cb12-16"></a>efi_relationship<span class="ot">&lt;-</span><span class="fu">ggplot</span>(viests) <span class="sc">+</span></span>
+<span id="cb12-17"><a href="paper-1---effective-vertical-inheritance.html#cb12-17"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Var2, <span class="at">y =</span> value, <span class="at">colour =</span> InitVert) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="paper-1---effective-vertical-inheritance.html#cb12-18"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="paper-1---effective-vertical-inheritance.html#cb12-19"></a>  <span class="fu">scale_color_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-20"><a href="paper-1---effective-vertical-inheritance.html#cb12-20"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Microbial Generations within a host&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb12-21"><a href="paper-1---effective-vertical-inheritance.html#cb12-21"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Proportion of Vertical Acquired Microbes remaining&quot;</span>) <span class="co">#+ facet_wrap(~Environment)</span></span>
+<span id="cb12-22"><a href="paper-1---effective-vertical-inheritance.html#cb12-22"></a>efi_relationship</span></code></pre></div>
+<p>We can now see that at microbial generation 10 the effective vertical inheritance is approximately 0.38 - despite hosts initially obtaining 50% of their microbiome from their parent.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="paper-1---joint-consideration-of-selection-and-microbial-generation-count-provides-unique-insights-into-evolutionary-and-ecological-dynamics-of-holobionts.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-paper1_evi.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
