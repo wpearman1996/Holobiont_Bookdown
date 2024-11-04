@@ -120,7 +120,7 @@ Rcpp::sourceCpp("./evi_code/create_offspring_loop_vi.cpp")
 
 Below is the R code to run the effective vertical inheritance work, with blue highlighted code indicating that the code is bespoke for this section.
 
-```{r,echo=T,include=F,eval=T, attr.source='.numberLines'}
+```{r,echo=T,include=T,eval=T, attr.source='.numberLines'}
 Create_OffSpring_Pop_cpp<-function(host_pop,n_micro,env_pool,envpoolsize,X,fixed_envpool,
                                    selection_parameter_microbes,selection_parameter_hosts,microbe_trait_list, host_microbe_optima,
                                    N_Species,env_condition,generation){
@@ -386,7 +386,7 @@ simulation_test <- lapply_wrapper_CPP(
 
 We have now run a simulation where we have measured effective vertical inheritance. We can analysis this as follows:
 
-```{r,eval=F, attr.source='.numberLines'}
+```{r,eval=T, attr.source='.numberLines'}
 viests<-list.files(pattern="X*ests.RDS")
 viests<-lapply(viests,read_rds)
 viests<-lapply(viests,function(q){
