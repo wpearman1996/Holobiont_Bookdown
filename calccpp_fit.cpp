@@ -12,7 +12,8 @@ NumericVector calculate_host_fitness_cpp(NumericMatrix HostPopulation, NumericVe
   
   int n = HostPopulation.ncol();
   NumericVector hostfitness(n);
-
+//  Rcpp::Rcout << "importances: " << microbiome_importances << std::endl;
+  
   for(int host = 0; host < n; host++) {
     NumericVector pop = HostPopulation(_, host);
     double mean_microbial_trait_val = sum(traitpool_microbes * pop) / sum(pop);

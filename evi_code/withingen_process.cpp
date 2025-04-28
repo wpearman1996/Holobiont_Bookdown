@@ -3,15 +3,15 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-double fitness_func_bacgen_cpp(double selection_parameter, double optima1, double optima2, double trait) {
+double fitness_func_bacgen_cpp(double selection_parameter, double optima1, double optima2, double trait,double weighting) {
   // Calculate the mean of optima1 and optima2
-  double meanval = (optima1 + optima2) / 2.0;
+  double meanval = (weighting * optima1) + ((1-weighting)*optima2);
   
   // Calculate fitness function
   double q = exp(pow((trait - meanval), 2) / -selection_parameter);
+  
   return q;
 }
-
 
 // [[Rcpp::export]]
 double calculate_mean_fitness(NumericVector microbe_probs_death_column, NumericVector host_column, int N_Microbes) {
@@ -36,7 +36,7 @@ NumericVector rmultinom_cpp(int n, NumericVector prob) {
 }
 
 // [[Rcpp::export]]
-NumericMatrix process_host_cpp(NumericMatrix HostPopulation, double selection_parameter_microbes, NumericVector host_microbe_optima, double env_condition, NumericVector traitpool_microbes, double N_Microbes, double self_seed_prop, NumericVector env_used) {
+NumericMatrix process_host_cpp(NumericMatrix HostPopulation, double selection_parameter_microbes, NumericVector host_microbe_optima, double env_condition, NumericVector traitpool_microbes, double N_Microbes, double self_seed_prop, NumericVector env_used, double weighting) {
   int N_Species = traitpool_microbes.length();
   int N_Hosts = HostPopulation.ncol();
   
@@ -52,7 +52,7 @@ NumericMatrix process_host_cpp(NumericMatrix HostPopulation, double selection_pa
     
     microbe_probs_death(_, 0) = host_column;
     for (int i = 0; i < N_Species; ++i) {
-        microbe_probs_death(i, 2) = fitness_func_bacgen_cpp(selection_parameter_microbes, microbe_used, pref_used, traitpool_microbes[i]);
+        microbe_probs_death(i, 2) = fitness_func_bacgen_cpp(selection_parameter_microbes, microbe_used, pref_used, traitpool_microbes[i],weighting);
       
     //  produce fitnesses
     }

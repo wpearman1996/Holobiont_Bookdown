@@ -12,10 +12,10 @@ We implement this as a C++ R code, because this is executed many many times and 
 
 ```{r Create offspring, include=T,echo=T, attr.source='.numberLines'}
 Rcpp::sourceCpp("./create_offspring_loop.cpp")
+
 Create_OffSpring_Pop_cpp<-function(host_pop,n_micro,env_pool,envpoolsize,X,fixed_envpool,
                                    selection_parameter_microbes,selection_parameter_hosts,microbe_trait_list, host_microbe_optima,
-                                   N_Species,env_condition){
-  
+                                   N_Species,env_condition,weighting){
   microbe_names<-paste("Microbe",1:N_Species,sep="_")
   ENV_sampling_probability<-(env_pool)/envpoolsize #Calculate initial sampling probability based on environmental relative abundance
   names(ENV_sampling_probability)<-names(env_pool)
@@ -23,7 +23,9 @@ Create_OffSpring_Pop_cpp<-function(host_pop,n_micro,env_pool,envpoolsize,X,fixed
                                            host_microbe_optima = host_microbe_optima, X = X,
                                            selection_parameter_microbes = selection_parameter_microbes,
                                            env_condition = env_condition,microbe_trait_list = microbe_trait_list,
-                                           n_micro = n_micro,microbe_names = microbe_names)
+                                           n_micro = n_micro,microbe_names = microbe_names,weighting=weighting)#,
+  #                                          fitness_microbes = fitness_microbes,weighted_samplingprob = weighted_samplingprob)
+  
   offspring_population<-list(offspring_population$host_pop,env_pool,microbe_trait_list,offspring_population$fitness_microbes,
                              offspring_population$weighted_samplingprob)
   
@@ -64,15 +66,15 @@ lapply_wrapper_CPP<-function(XY,
                              HostPopulation, N_Microbes, envpoolsize, env_pool,fixed_envpool,generations,per_host_bac_gens,self_seed_prop,
                              selection_parameter_hosts,selection_parameter_microbes,host_trait_list,N_Species,traitpool_microbes,
                              generation_data_file,selection_parameter_env,env_cond_val,
-                             microbiome_importances,host_microbe_optima,mutation_rate,mutation_sd,print_currentgen){
-  
+                             microbiome_importances,host_microbe_optima,mutation_rate,mutation_sd,print_currentgen,weighting){
+  # profvis({
   #Note: selection_parameter_hosts can be used to turn on, and adjust intensity of HS - when zero, host selection is off.
   #Similarly when selection_parameter_microbes is 0, we are using a neutral model, regardless of the given value of SelectionType. 
   temp_list <- list()
   print(paste("Current X Value is", XY[1], "Current EnvCon value is", XY[2]))
   gen_data<-list()    
   microbe_names<-paste("Microbe",1:N_Species,sep="_")
-
+  
   env_used <- NULL
   if(!nrow(env_cond_val) == generations){
     print("env_cond_val should be a matrix of the same length as the number of generations you are simulating")
@@ -83,11 +85,14 @@ lapply_wrapper_CPP<-function(XY,
   for(i in 1:ncol(init_microbial_fitness)){
     init_microbial_fitness[,i] <- fitness_func_bacgen(selection_parameter = selection_parameter_microbes,
                                                       optima1 = host_microbe_optima[i],
-                                                      optima2 = env_cond_val[1,1],trait = traitpool_microbes)
+                                                      optima2 = env_cond_val[1,1],trait = traitpool_microbes,weighting=weighting)
   }
+  
   init_microbial_fitness<-init_microbial_fitness[HostPopulation>0]
+  
   init_microbial_fitness<-weighted.mean(x = init_microbial_fitness,w = HostPopulation)
-
+  
+  
   init_host_fitness<-vector()
   for(i in 1:ncol(HostPopulation)){
     mean_microbial_trait_val<- sum(traitpool_microbes * HostPopulation[,i])/N_Microbes
@@ -107,9 +112,6 @@ lapply_wrapper_CPP<-function(XY,
     if(generation ==1){
       env_used<-fixed_envpool
     }
-    if(per_host_bac_gens == 1){
-      self_seed_prop=1
-    }
     env_cond_val_used<-as.vector(env_cond_val[generation,])
     for(bacgen in 1:per_host_bac_gens){
       
@@ -126,17 +128,21 @@ lapply_wrapper_CPP<-function(XY,
                                       selection_parameter_env = selection_parameter_env,
                                       XY = XY,
                                       traitpool_microbes = traitpool_microbes,env_used = env_used
-      )#[,8]
+      )
       env_fits<-weighted.mean(x = env_used[,3],w = env_used[,8])
       env_used<-env_used[,8]        
-      names(env_used)<-names(fixed_envpool)
-      HostPopulation<-process_host_cpp(HostPopulation = HostPopulation,
-                                       selection_parameter_microbes = selection_parameter_microbes,
-                                       host_microbe_optima = host_microbe_optima ,
-                                       env_condition = env_cond_val_used[bacgen],
-                                       traitpool_microbes = traitpool_microbes,
-                                       N_Microbes = N_Microbes, 
-                                       self_seed_prop = self_seed_prop,env_used = env_used)
+      names(env_used)<-names(fixed_envpool)#rownames(microbe_probs)
+      if(bacgen >1){
+        HostPopulation<-process_host_cpp(HostPopulation = HostPopulation,
+                                         selection_parameter_microbes = selection_parameter_microbes,
+                                         host_microbe_optima = host_microbe_optima ,
+                                         env_condition = env_cond_val_used[bacgen],
+                                         traitpool_microbes = traitpool_microbes,
+                                         N_Microbes = N_Microbes, 
+                                         self_seed_prop = self_seed_prop,env_used = env_used,weighting = weighting)}
+      else {
+        HostPopulation<-HostPopulation
+      }
     }
     #Now we've created our new environments, we now need to choose which members of a population reproduce
     # We can do this either neutrally (i.e., random chance) OR we can do this based on the fitness of a host based on what is provided by its microbiome
@@ -151,6 +157,7 @@ lapply_wrapper_CPP<-function(XY,
                                                                  host_microbe_optima, 
                                                                  selection_parameter_hosts, env_cond_val_used[per_host_bac_gens])
     
+
     hostfitness_abs<-host_fitnessvector
     host_fitnessvector<-host_fitnessvector#/mean(host_fitnessvector)
     
@@ -160,6 +167,8 @@ lapply_wrapper_CPP<-function(XY,
     HostPopulation<-HostPopulation[ , HostPopulationInt]
     host_microbe_optima<-host_microbe_optima[HostPopulationInt]
     microbiome_importances<-microbiome_importances[HostPopulationInt]
+    mean_microbe_traitval<-mean(apply(HostPopulation,MARGIN = 2,FUN=function(x){weighted.mean(traitpool_microbes,x)}))
+    var_microbe_traitval<-var(apply(HostPopulation,MARGIN = 2,FUN=function(x){weighted.mean(traitpool_microbes,x)}))  
     
     if(mutation_rate>0){
       host_microbe_optima <- mutate_trait(host_microbe_optima, mutation_rate, mutation_sd)
@@ -181,26 +190,27 @@ lapply_wrapper_CPP<-function(XY,
                                         selection_parameter_hosts = selection_parameter_hosts,
                                         host_microbe_optima=host_microbe_optima,
                                         N_Species=N_Species,
-                                        env_condition=env_cond_val_used[per_host_bac_gens])
-    # print("Issue here")
+                                        env_condition=env_cond_val_used[per_host_bac_gens],
+                                        weighting=weighting)
     HostPopulation <- new_gen$Child
     BrayDiv<-vegdist(t(HostPopulation),method="bray")
-    div_pergen<-calc_div(t(new_gen$Child))/log(calc_rich(new_gen$Child))
+    div_pergen<-diversity(t(new_gen$Child))
+    richness<-specnumber(t(new_gen$Child))
     new_gen$HostFitness_Abs<-(hostfitness_abs)
     new_gen$nomicrobiomehost_fitnessvector<-nomicrobiomehost_fitnessvector
     new_gen$BrayDiv<-BrayDiv
     new_gen$HostMicrobeOptima<-host_microbe_optima_prevgen
     gen_data[[generation]]<-list(div_pergen,new_gen$HostFitness_Abs,new_gen$microbefitness,env_used,
                                  env_fits,new_gen$HostMicrobeOptima,new_gen$nomicrobiomehost_fitnessvector,new_gen$microbe_samplingprob,
-                                 microbiome_importances,new_gen$BrayDiv)
+                                 microbiome_importances,new_gen$BrayDiv,mean_microbe_traitval,richness,var_microbe_traitval)
     names(gen_data[[generation]])<-c("Diversity","HostFitness","MicrobeFitness","env_used","env_fits"
                                      ,"HostMicrobeOptima","nomicrobiomehost_fitnessvector",
-                                     "microbe_samplingprob","microbiome_importances","BrayDiv")#,"HostPrefOptima","HostMicrobeOptima")
+                                     "microbe_samplingprob","microbiome_importances","BrayDiv","mean_microbe_traitval","richness","var_microbe_traitval")#,"HostPrefOptima","HostMicrobeOptima")
   }
   new_gen$GenData<-gen_data
   new_gen$init_host_fitness<-init_host_fitness
   new_gen$init_microbe_fitness<-init_microbial_fitness
-
+  new_gen$traitpool<-traitpool_microbes
   temp_list[[paste0("X", XY[1], "_Y", XY[2],"_EnvCont",XY[3],"_HostSel",XY[4],"_MicrobeSel",XY[5])]] <- new_gen
   temp_list
 }
@@ -218,7 +228,7 @@ library(readr)
 library(reshape2)
 library(Rcpp)
 library(vegan)
-library(flair)
+#library(flair)
 library(parallel)
 library(dplyr)
 library(ggplot2)
@@ -235,16 +245,16 @@ calc_div<-function(population){
   relabund<-population/rowSums(population)
   - rowSums(relabund* log(relabund))
 }
-
 fitness_func <- function(selection_parameter, optima, trait) {
   q = exp(((trait - optima)^2) / -selection_parameter)
   q
 }
 
-
-fitness_func_bacgen <- function(selection_parameter,optima1, optima2, trait) {
-  q = exp((((trait - mean(c(optima1, optima2)))^2))/ -selection_parameter)
-  q
+fitness_func_bacgen<-function(selection_parameter, optima1, optima2, trait, weighting) {
+  
+  meanval = (weighting * optima1) + ((1-weighting)*optima2)
+  q = exp(((trait - meanval)^2) / -selection_parameter)
+  return(q)
 }
 
 mutate_trait <- function(trait, mutation_rate, mutation_sd) {
@@ -295,9 +305,10 @@ Now we can run a simulation:
 
 ```{r,include=T,echo=T, attr.source='.numberLines'}
 Host_PopSize= 100
-MicrobePopSize=10^9
-EnvPoolSize=10^9
+MicrobePopSize=10^6
+EnvPoolSize=10^8
 N_Species =200
+
 
 InitPopulation<-matrix(nrow = N_Species, ncol=Host_PopSize)
 InitPopulation<-apply(InitPopulation,MARGIN=2,FUN=function(x){
@@ -309,14 +320,17 @@ colnames(InitPopulation)<-paste("Host",1:Host_PopSize,sep="_")
 EnvPool<-rep(EnvPoolSize/N_Species,N_Species)
 names(EnvPool)<-paste("Microbe",1:N_Species,sep="_")
 fixed_envpool<-EnvPool
+rnames<-paste("Host",1:Host_PopSize,sep="_")
 
-traitpool_microbes<-runif(N_Species,-1,1)
+rnames<-paste("Microbe",1:N_Species,sep="_")
+
+traitpool_microbes<-runif(N_Species,-2.5,2.5)
 names(traitpool_microbes)<-paste("Microbe",1:N_Species,sep="_")
 mnames<-colnames(InitPopulation)
 host_microbe_optima<-rep(0,Host_PopSize)
 
 names(host_microbe_optima)<-mnames
-microbiome_importances<-rep(1,Host_PopSize)
+microbiome_importances<-rep(1,Host_PopSize)#runif(Host_PopSize,0,1)
 names(microbiome_importances)<-mnames
 
 
@@ -346,7 +360,8 @@ simulation_test <- lapply_wrapper_CPP(
     generation_data_file = NA,
     mutation_rate = 0.0,
     mutation_sd = 0.0,
-    print_currentgen = F
+    print_currentgen = F,
+    weighting=0.5
   )
 ```
 
